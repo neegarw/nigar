@@ -1,0 +1,31 @@
+.logo-wrapper svg {
+  width: 200px;
+  height: auto;
+}
+
+.path {
+  fill: transparent; 
+  stroke: #648670;
+  stroke-width: 2;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.path.fill-animate {
+  animation: fill 2s ease forwards;
+}
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: #648670;
+  }
+}
