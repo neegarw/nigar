@@ -1,0 +1,46 @@
+/* Mətn rəngi və underline animasiyası */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0px;
+  transition: color .3s ease;
+  cursor: pointer;
+}
+
+/* Hover zamanı mətn rəngi dəyişsin */
+.nav-link:hover {
+  color: #AF91DB;
+}
+
+/* Dalğalı underline (soldan sağa dolur, sonra geri çəkilir) */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;            /* xətin mətndən məsafəsi */
+  width: 100%;
+  height: 10px;
+  pointer-events: none;
+
+  /* Dalğalı xətt üçün SVG background (data URI) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='8' viewBox='0 0 120 8' fill='none'><path d='M0 4 Q 10 0 20 4 T 40 4 T 60 4 T 80 4 T 100 4 T 120 4' stroke='%23AF91DB' stroke-width='2' stroke-linecap='round' fill='none'/></svg>");
+  background-repeat: repeat-x;
+  background-size: 30px 10px;   /* dalğanın sıxlığı – istəsən dəyiş */
+
+  transform-origin: left center;
+  transform: scaleX(0);        /* əvvəl gizli */
+  transition: transform .45s ease;
+}
+
+/* Hover-da xətt soldan sağa “çəkilir” */
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Mobil altda ikonlu menyu üçün kiçik düzəliş (opsional) */
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}

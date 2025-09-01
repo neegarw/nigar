@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss()
-  ]
+  ],
+  optimizeDeps: {
+    exclude: ['react-dark-mode-toggle']
+  }
 })
