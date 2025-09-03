@@ -8,7 +8,7 @@ import './Header.css'
 function Header() {
   return (
     <>
-      <div className='bg-transparent relative z-10'>
+      <div className='bg-transparent absolute w-full top-0 left-0 z-10'>
         <div className='container mx-auto flex justify-between items-center py-6 px-8 md:px-0'>
           <Logo />
           <div className='flex items-center gap-6'>
