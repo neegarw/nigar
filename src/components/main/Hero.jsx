@@ -11,7 +11,7 @@ function Hero() {
                 </div>
                 <div className="md:w-[60%] w-full h-[90vh] md:h-screen px-4 pt-[150px] md:bg-[#6FDCBE] bg-[#f6f4f6] text-[28px] md:text-[30px] xl:text-[50px] lg:text-[40px]">
                     <div className="md:w-[70%] w-[90%] mx-auto text-left md:leading-15 leading-10">
-                        <h1 className="text-[20px] block py-2">👋 hi, I’m nigar</h1>
+                        <h1 className="text-[20px] block py-2 -rotate-5">👋 Hi, I’m Nigar</h1>
                         I’m a Front-End Developer passionate about building user-friendly, pixel-perfect interfaces. Currently working with React, Next.js and creating real-world projects.
                     </div>
                 </div>

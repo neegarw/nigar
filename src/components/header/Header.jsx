@@ -42,7 +42,7 @@ function Header() {
       </div>
 
       <div className='md:hidden block'>
-        <ul className="fixed bg-[#F6F4F6] bottom-0 left-0 right-0 flex justify-center items-center py-3 border-t md:hidden gap-7">
+        <ul className="fixed bg-[#F6F4F6] z-50 bottom-0 left-0 right-0 flex justify-center items-center py-3 border-t md:hidden gap-7">
           <li className='nav-link'>
             <TbHomeHeart />
             <span>Home</span>
