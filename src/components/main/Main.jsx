@@ -1,4 +1,5 @@
 import Hero from "./Hero"
+import About from "./About"
 import Projects from "./Projects"
 
 function Main() {
@@ -6,6 +7,7 @@ function Main() {
         <>
             <Hero />
             <Projects />
+            <About />
         </>
     )
 }
