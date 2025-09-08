@@ -3,7 +3,7 @@ import Logo from '../logo/Logo'
 import { GrContact } from "react-icons/gr"
 import { PiProjectorScreenChartDuotone } from "react-icons/pi"
 import { TbHomeHeart } from "react-icons/tb"
-import './Header.css'
+import './header.css'
 
 function Header() {
   return (
