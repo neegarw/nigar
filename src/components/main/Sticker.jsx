@@ -5,7 +5,7 @@ function Sticker() {
         <div className="p-4">
             <DotLottieReact
                 className="z-50 w-[700px] absolute lg:left-[-50px] md:left-[-100px]" 
-                src="/src/assets/sticker/devgirl.json"
+                src="/sticker/devgirl.json"
                 autoplay
                 loop
             />
