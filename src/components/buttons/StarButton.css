@@ -1,5 +1,5 @@
 /* From Uiverse.io by MuhammadHasann */ 
-button {
+.star-btn {
   position: relative;
   padding: 12px 35px;
   background: #fec195;
@@ -79,13 +79,13 @@ button {
   transition: all 0.8s ease;
 }
 
-button:hover {
+.star-btn:hover {
   background: transparent;
   color: #fec195;
   box-shadow: 0 0 25px #fec1958c;
 }
 
-button:hover .star-1 {
+.star-btn:hover .star-1 {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -95,7 +95,7 @@ button:hover .star-1 {
   z-index: 2;
 }
 
-button:hover .star-2 {
+.star-btn:hover .star-2 {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -105,7 +105,7 @@ button:hover .star-2 {
   z-index: 2;
 }
 
-button:hover .star-3 {
+.star-btn:hover .star-3 {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -115,7 +115,7 @@ button:hover .star-3 {
   z-index: 2;
 }
 
-button:hover .star-4 {
+.star-btn:hover .star-4 {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -125,7 +125,7 @@ button:hover .star-4 {
   z-index: 2;
 }
 
-button:hover .star-5 {
+.star-btn:hover .star-5 {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -135,7 +135,7 @@ button:hover .star-5 {
   z-index: 2;
 }
 
-button:hover .star-6 {
+.star-btn:hover .star-6 {
   position: absolute;
   top: 5%;
   left: 60%;

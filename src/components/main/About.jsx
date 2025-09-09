@@ -6,7 +6,8 @@ import k2 from "../../assets/imgs/k2.jpeg";
 import k3 from "../../assets/imgs/k3.jpeg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { div } from "framer-motion/client";
+import AboutSection from "./AboutSection";
+import SkipButton from "../buttons/SkipButton";
 
 const projects = [
     { id: 1, name: "kedi", img: k1, desc: "A101 React project demo." },
@@ -26,6 +27,8 @@ export default function About() {
     const [showConfetti, setShowConfetti] = useState(false);
     const [showBlog, setShowBlog] = useState(false);
     const [pieces, setPieces] = useState(0); // konfeti sayı
+    const [fromGame, setFromGame] = useState(false); // 👉 fərqləndirmək üçün
+
 
 
     const handleClick = (index) => {
@@ -82,6 +85,7 @@ export default function About() {
     useEffect(() => {
         if (matchedCount === projects.length) {
             setShowConfetti(true);
+            setFromGame(true); // 👉 oyunla gəldiyini yadda saxla
             setPieces(700); // əvvəlcə çox konfeti atsın
 
             // 3 saniyə sonra yeni konfeti gəlməsin (axırıncı tökülsün)
@@ -117,69 +121,82 @@ export default function About() {
                     colors={['#FFC700', '#FF0000', '#00FF00', '#00BFFF', '#FF69B4']}
                 />
             )}
+            {
+                !showBlog && (
+                    <>
+                        <h2
+                            data-aos="flip-down"
+                            className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold mb-6 text-[#404040]"
+                        >
+                            Memory Game
+                        </h2>
 
+                        <p className="mb-4 text-center text-gray-700">
+                            Play the memory game to unlock my About section 🎮
+                            or skip directly if you prefer ⏩
+                        </p>
 
-            {!showBlog && (
-                <>
-                    <h2
-                        data-aos="flip-down"
-                        className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold mb-6 text-[#404040]">
-                        Memory Game
-                    </h2>
-                    <div
-                        data-aos="flip-down"
-                        className="grid grid-cols-2 md:grid-cols-3 gap-6 px-4 md:px-0">
-                        {cards.map((card, index) => (
+                        <div className="flex justify-center gap-4 mb-6">
                             <div
-                                key={card.key}
-                                className="w-32 md:w-38 h-48 perspective cursor-pointer"
-                                onClick={() => handleClick(index)}
+                                onClick={() => setShowBlog(true)}
                             >
-                                <motion.div
-                                    style={{ transformStyle: "preserve-3d" }}
-                                    animate={{ rotateY: card.flipped ? 180 : 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="relative w-full h-full"
-                                >
-                                    <div
-                                        style={{ backfaceVisibility: "hidden" }}
-                                        className="absolute w-full h-full bg-gray-200 rounded-lg flex items-center justify-center text-xl font-bold"
-                                    >
-                                        ?
-                                    </div>
-                                    <div
-                                        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                                        className="absolute w-full h-full bg-white rounded-lg flex flex-col items-center justify-center p-2"
-                                    >
-                                        <img src={card.img} alt={card.name} className="w-full h-full object-cover mb-2" />
-                                    </div>
-                                </motion.div>
+                                <SkipButton />
                             </div>
-                        ))}
-                    </div>
-                </>
-            )}
 
+                        </div>
+
+                        <div
+                            data-aos="flip-down"
+                            className="grid grid-cols-2 md:grid-cols-3 gap-6 px-4 md:px-0"
+                        >
+                            {cards.map((card, index) => (
+                                <div
+                                    key={card.key}
+                                    className="w-34 md:w-38 md:h-48 h-40 perspective cursor-pointer"
+                                    onClick={() => handleClick(index)}
+                                >
+                                    <motion.div
+                                        style={{ transformStyle: "preserve-3d" }}
+                                        animate={{ rotateY: card.flipped ? 180 : 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="relative w-full h-full"
+                                    >
+                                        <div
+                                            style={{ backfaceVisibility: "hidden" }}
+                                            className="absolute w-full h-full bg-gray-200 rounded-lg flex items-center justify-center text-xl font-bold"
+                                        >
+                                            ?
+                                        </div>
+                                        <div
+                                            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                                            className="absolute w-full md:h-full bg-white rounded-lg flex flex-col items-center justify-center p-2"
+                                        >
+                                            <img src={card.img} alt={card.name} className="w-full h-full object-cover mb-2" />
+                                        </div>
+                                    </motion.div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )
+            }
             {showBlog && (
                 <div>
                     <h3
                         data-aos="zoom-out-up"
-                        className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4">About</h3>
-                    <motion.div
-                        data-aos="zoom-out-up"
-                        className="mt-8 p-6 bg-white rounded-lg shadow-xl text-center max-w-md"
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                    >
-                        <p className="mb-4">
-                            Yay! You completed the memory game! Now let's dive into some cool project insights and stories.
+                        className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 text-pink-600">About 🌸</h3>
+
+                    {fromGame && ( // 👉 yalnız oyundan gələndə göstər
+                        <p className="mb-4 font-semibold text-green-600 text-center">
+                            🎉 Congratulations! You unlocked my About section by completing the game!
                         </p>
-                        <ul className="space-y-2 text-left">
-                        </ul>
-                    </motion.div>
+                    )}
+                    <AboutSection />
                 </div>
 
             )}
         </div>
     );
 }
+
+
