@@ -2,8 +2,8 @@ import { GraduationCap, Code, FileDown, Github, Linkedin } from "lucide-react";
 
 export default function CuteAbout() {
   return (
-    <section className="min-h-screen bg-pink-50 py-16 px-6 flex flex-col items-center">
-      <p className="text-center text-gray-700 max-w-2xl mb-12 text-lg">
+    <section className="min-h-screen  px-6 flex flex-col items-center">
+      <p className="text-center text-gray-700 max-w-2xl  py-5 text-lg">
         Hi! I’m <span className="text-pink-500 font-semibold">Nigar</span>, a Biology graduate turned Frontend Developer.  
         I love creating colorful, interactive, and cute web experiences full of flowers and happiness 🌷.
       </p>
@@ -16,7 +16,7 @@ export default function CuteAbout() {
             <GraduationCap className="text-pink-500" />
             <h3 className="text-2xl font-semibold text-pink-600">Education</h3>
           </div>
-          <ul className="space-y-2 text-gray-700">
+          <ul className="space-y-2 text-gray-700 relative z-10">
             <li>🎓 Baku State University – Biology Teaching</li>
             <li>💻 Div Academy – Frontend Development (6 months)</li>
           </ul>
@@ -29,7 +29,7 @@ export default function CuteAbout() {
             <Code className="text-purple-500" />
             <h3 className="text-2xl font-semibold text-purple-600">Skills</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 relative z-10">
             {["HTML", "CSS", "JS", "React", "Next.js", "Tailwind CSS"].map((skill) => (
               <span
                 key={skill}
@@ -45,7 +45,7 @@ export default function CuteAbout() {
       {/* CV + Links */}
       <div className="mt-12 flex flex-col md:flex-row items-center gap-4">
         <a
-          href="/cv/nigar-cv.pdf"
+          href="../../../public/cv/Nigar_Murvetzade_cv_eng.pdf"
           download
           className="flex items-center gap-2 px-6 py-3 bg-pink-500 text-white rounded-xl shadow-lg hover:bg-pink-600 transition"
         >
@@ -53,10 +53,10 @@ export default function CuteAbout() {
         </a>
 
         <div className="flex gap-4 text-gray-700 text-2xl">
-          <a href="https://github.com/yourgithub" target="_blank" className="hover:text-pink-500 transition">
+          <a href="https://github.com/neegarw" target="_blank" className="hover:text-pink-500 transition">
             <Github />
           </a>
-          <a href="https://linkedin.com/in/yourlinkedin" target="_blank" className="hover:text-pink-500 transition">
+          <a href="https://linkedin.com/in/nigarmurvetzade" target="_blank" className="hover:text-pink-500 transition">
             <Linkedin />
           </a>
         </div>

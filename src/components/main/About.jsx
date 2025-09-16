@@ -126,7 +126,7 @@ export default function About() {
                     <>
                         <h2
                             data-aos="flip-down"
-                            className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold mb-6 text-[#404040]"
+                            className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold md:mb-6 text-[#404040]"
                         >
                             Memory Game
                         </h2>
@@ -147,12 +147,12 @@ export default function About() {
 
                         <div
                             data-aos="flip-down"
-                            className="grid grid-cols-2 md:grid-cols-3 gap-6 px-4 md:px-0"
+                            className="grid grid-cols-2 md:grid-cols-3 gap-6 px-4 md:px-0 pb-[50px]"
                         >
                             {cards.map((card, index) => (
                                 <div
                                     key={card.key}
-                                    className="w-34 md:w-38 md:h-48 h-40 perspective cursor-pointer"
+                                    className="w-34 md:w-38 md:h-48 h-38 perspective cursor-pointer"
                                     onClick={() => handleClick(index)}
                                 >
                                     <motion.div
@@ -187,7 +187,7 @@ export default function About() {
                         className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 text-pink-600">About 🌸</h3>
 
                     {fromGame && ( // 👉 yalnız oyundan gələndə göstər
-                        <p className="mb-4 font-semibold text-green-600 text-center">
+                        <p className="font-semibold text-pink-700 text-center">
                             🎉 Congratulations! You unlocked my About section by completing the game!
                         </p>
                     )}
