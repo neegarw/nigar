@@ -1,5 +1,5 @@
+import About from "../about/About"
 import Hero from "./Hero"
-import About from "./About"
 import Projects from "./Projects"
 
 function Main() {

@@ -183,10 +183,12 @@ export default function About() {
             {showBlog && (
                 <div>
                     <h3
-                        data-aos="zoom-out-up"
+                        onMouseEnter={() => setShowFlowers(true)}
+                        onMouseLeave={() => setShowFlowers(false)}
+                        data-aos="fade-right" 
                         className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 text-pink-600">About 🌸</h3>
 
-                    {fromGame && ( // 👉 yalnız oyundan gələndə göstər
+                    {fromGame && (
                         <p className="font-semibold text-pink-700 text-center">
                             🎉 Congratulations! You unlocked my About section by completing the game!
                         </p>
