@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  server: {
+    port: 5176
+  },
   optimizeDeps: {
     exclude: ['react-dark-mode-toggle']
   }
