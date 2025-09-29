@@ -1,81 +1,118 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+export default function ContactForm() {
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [status, setStatus] = useState("");
+    const [showToast, setShowToast] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Göndərilir...");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        "https://nigar-backend-jyeb4b8bc-neegars-projects.vercel.app/api/contact", // yeni deploy URL
-        formData,
-        { headers: { "Content-Type": "application/json" } }
-      );
+        // Frontend validation
+        if (!formData.message.trim()) {
+            showMessage("Message cannot be empty ❌");
+            return;
+        }
 
-      if (res.data.success) {
-        setStatus("Mesaj uğurla göndərildi ✅");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Xəta baş verdi ❌");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("Serverə qoşulmaq mümkün olmadı ❌");
-    }
-  };
+        showMessage("Sending...");
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 to-purple-300 p-6">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md space-y-4"
-      >
-        <h2 className="text-2xl font-bold text-gray-800 text-center">Əlaqə Formu</h2>
+        try {
+            const res = await axios.post(
+                "https://nigar-backend.vercel.app/api/contact",
+                formData,
+                { headers: { "Content-Type": "application/json" } }
+            );
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Adınız"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
+            if (res.data.success) {
+                showMessage("Message sent successfully ✅");
+                setFormData({ name: "", email: "", message: "" });
+            } else {
+                showMessage("Something went wrong ❌");
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage("Failed to connect to server ❌");
+        }
+    };
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Emailiniz"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
+    const showMessage = (msg) => {
+        setStatus(msg);
+        setShowToast(true);
+    };
 
-        <textarea
-          name="message"
-          placeholder="Mesajınız"
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-          rows="4"
-        ></textarea>
+    useEffect(() => {
+        if (showToast) {
+            const timer = setTimeout(() => setShowToast(false), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [showToast]);
 
-        <button
-          type="submit"
-          className="w-full bg-pink-500 text-white py-3 rounded-lg font-semibold hover:bg-pink-600 transition"
-        >
-          Göndər
-        </button>
+    return (
+        <div className="flex items-center justify-center bg-gradient-to-br from-pink-200 to-purple-300 md:py-20 py-3 px-4 md:px-0 relative">
+            {/* Toast popup */}
+            {showToast && (
+                <div
+                    className={`fixed inset-0 bg-black/50 flex items-start justify-center z-50 py-6`}
+                    onClick={() => setShowToast(false)} 
+                >
+                    <div
+                        className={`px-8 py-4 rounded-2xl shadow-2xl text-white text-lg font-semibold transition-all duration-300 transform ${status.includes("successfully")
+                            ? "bg-gradient-to-r from-green-400 to-green-600"
+                            : status.includes("Sending")
+                                ? "bg-[#9152FF]"
+                                : "bg-[#FA98AC]"
+                            } animate-fade-in`}
+                    >
+                        {status}
+                    </div>
+                </div>
+            )}
 
-        {status && <p className="text-center text-gray-700 mt-2">{status}</p>}
-      </form>
-    </div>
-  );
+
+            <form
+                onSubmit={handleSubmit}
+                className="w-full max-w-md bg-white/30 backdrop-blur-md p-8 rounded-2xl shadow-lg space-y-6"
+            >
+                <h2 className="text-3xl font-bold text-gray-800 text-center">Contact Form</h2>
+
+                {/* Floating label inputs */}
+                {["name", "email", "message"].map((field) => (
+                    <div key={field} className="relative z-0 w-full group">
+                        {field !== "message" ? (
+                            <input
+                                type={field === "email" ? "email" : "text"}
+                                name={field}
+                                value={formData[field]}
+                                onChange={handleChange}
+                                placeholder=" "
+                                className="block w-full px-2 py-2.5 bg-transparent border-0 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-pink-500 peer transition-colors duration-300"
+                            />
+                        ) : (
+                            <textarea
+                                name={field}
+                                value={formData[field]}
+                                onChange={handleChange}
+                                placeholder=" "
+                                rows={4}
+                                className="block w-full px-2 py-2.5 bg-transparent border-0 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-pink-500 peer resize-none transition-colors duration-300"
+                            />
+                        )}
+                        <label className="absolute text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            {field === "name" ? "Your Name" : field === "email" ? "Your Email" : "Your Message"}
+                        </label>
+                    </div>
+                ))}
+                <button
+                    type="submit"
+                    className="group text-[20px] flex items-center justify-center w-full group-hover:before:duration-500 group-hover:after:duration-500 after:duration-500 hover:border-rose-300 hover:before:[box-shadow:_20px_20px_20px_30px_#a21caf] duration-500 before:duration-500 hover:duration-500  hover:after:-right-8 hover:before:right-12 hover:before:-bottom-8 hover:before:blur origin-left hover:decoration-2 hover:text-rose-300 relative bg-neutral-800 h-16 border text-left p-3 text-gray-50 font-bold rounded-lg overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-1 before:top-1 before:z-10 before:bg-violet-500 before:rounded-full before:blur-lg after:absolute after:z-10 after:w-20 after:h-20 after:content[''] after:bg-rose-300 after:right-8 after:top-3 after:rounded-full after:blur-lg">
+                    Send
+                </button>
+            </form>
+        </div>
+    );
 }

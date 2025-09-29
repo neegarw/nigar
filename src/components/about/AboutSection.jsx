@@ -35,7 +35,7 @@ export default function AboutSection() {
         Hi! I’m <span className="text-pink-500 font-semibold">Nigar</span>, a Biology graduate turned
         Frontend Developer 🌸.
         I love creating <span className="text-pink-600 font-semibold">colorful, interactive</span>,
-        and <span className="text-purple-500 font-semibold">cute</span> web experiences full of
+        and <span className="reactspan selection:text-[#404040]">cute</span> web experiences full of
         flowers and happiness 🌷.
       </motion.p>
 
@@ -49,9 +49,9 @@ export default function AboutSection() {
         <h3 className="text-3xl font-bold text-pink-600 mb-6 text-center">My Journey</h3>
         <div className="border-l-4 border-pink-300 pl-6 space-y-6">
           {[
-            { icon: <GraduationCap className="text-pink-500" />, year: "2020 – 2024", desc: "🎓 Baku State University – Biology Teaching" },
-            { icon: <Code className="text-purple-500" />, year: "2024", desc: "💻 Div Academy – Frontend Development (6 months)" },
-            { icon: <Sparkles className="text-yellow-500" />, year: "Present", desc: "🌟 Internship at Okmedia" },
+            { icon: <GraduationCap className="text-pink-500" />, year: "2020 – 2024", desc: "Baku State University – Biology Teaching" },
+            { icon: <Code className="text-purple-500" />, year: "2024", desc: "Div Academy – Frontend Development (6 months)" },
+            { icon: <Sparkles className="text-yellow-500" />, year: "Present", desc: "Internship at Okmedia" },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -104,17 +104,32 @@ export default function AboutSection() {
       </motion.div>
 
       {/* 5. Future Goals */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="mt-12 w-full max-w-4xl"
+      <motion.ul
+        initial="hidden"
+        whileInView="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
+        className="space-y-3 text-gray-700 py-4"
       >
         <h3 className="text-3xl font-bold text-pink-600 mb-6 text-center">Future Goals</h3>
-        <ul className="space-y-3 text-gray-700">
-          {futureGoals.map((goal, i) => <li key={i}>{goal}</li>)}
-        </ul>
-      </motion.div>
+        {futureGoals.map((goal, i) => (
+          <motion.li
+            key={i}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="p-3 rounded-lg bg-pink-50 shadow hover:scale-105 transition-transform duration-300"
+          >
+            {goal}
+          </motion.li>
+        ))}
+      </motion.ul>
+
 
       {/* 6. Fun Facts */}
       <div className="mt-12 w-full max-w-4xl grid md:grid-cols-3 gap-6">
@@ -134,7 +149,7 @@ export default function AboutSection() {
               {/* Front - boş / gizli */}
               <div
                 style={{ backfaceVisibility: "hidden" }}
-                className="absolute w-full h-full bg-gray-200 rounded-2xl flex items-center justify-center p-4 shadow-md border border-gray-300 text-gray-600 font-bold"
+                className="absolute w-full h-full bg-pink-100 rounded-2xl flex items-center justify-center p-4 shadow-md border border-gray-300 text-gray-600 font-bold"
               >
                 Fun facts!
               </div>

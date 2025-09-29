@@ -110,7 +110,7 @@ export default function About() {
 
     return (
         <div
-            className="min-h-screen flex flex-col items-center bg-[#FEF8B3] py-10 relative px-4 md:px-0">
+            className="min-h-screen flex flex-col items-center bg-[#FEF8B3] py-10 relative px-4 md:px-0 selection:text-[#FEF8B3] selection:bg-white">
             {showConfetti && (
                 <Confetti
                     width={window.innerWidth}
@@ -126,7 +126,7 @@ export default function About() {
                     <>
                         <h2
                             data-aos="flip-down"
-                            className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold md:mb-6 text-[#404040]"
+                            className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4 font-bold md:mb-6 text-[#404040] "
                         >
                             Memory Game
                         </h2>
