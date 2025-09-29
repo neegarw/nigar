@@ -9,8 +9,8 @@ function Main() {
             <Hero />
             <Projects />
             <About />
-            <Contact />
-        </>
+            <Contact endpoint="https://nigar-backend.vercel.app/api/contact" />
+         </>
     )
 }
 
