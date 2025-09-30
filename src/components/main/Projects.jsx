@@ -63,14 +63,10 @@ function Projects() {
                                 />
                             </div>
 
-                            {/* overlay */}
                             <motion.div
                                 className="absolute inset-0 bg-black/70 flex justify-center items-center opacity-0 transition-opacity duration-300"
                                 whileHover={{ opacity: 1 }}
                             >
-                                {/* <button className="bg-white text-black px-4 py-2 rounded m-2 hover:bg-gray-200 transition">
-                                    View Live
-                                </button> */}
                                 <StarButton />
                             </motion.div>
                         </motion.a>

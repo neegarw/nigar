@@ -53,7 +53,7 @@ export default function ContactForm() {
     }, [showToast]);
 
     return (
-        <div className="flex items-center justify-center bg-gradient-to-br from-pink-200 to-purple-300 md:py-20 py-10 px-4 md:px-0 relative">
+        <div className="flex items-center justify-center bg-gradient-to-br from-pink-200 to-purple-300 md:py-30 py-10 px-4 md:px-0 relative">
             {/* Toast popup */}
             {showToast && (
                 <div
