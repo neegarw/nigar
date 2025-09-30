@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 import { motion } from "framer-motion";
+import { ThemeContext } from "../../context/ThemeContext";
 
 import a101 from "../../assets/imgs/a101.png";
 import apple from "../../assets/imgs/apple.png";
@@ -11,6 +12,8 @@ import papa from "../../assets/imgs/papa.png";
 import StarButton from "../buttons/StarButton";
 
 function Projects() {
+    const { theme } = useContext(ThemeContext);
+
     const projects = [
         { img: a101, link: "https://a101-react-594wlsusi-neegars-projects.vercel.app/" },
         { img: apple, link: "https://apple-demo-eight.vercel.app/" },
@@ -29,8 +32,16 @@ function Projects() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // Dynamic background, text, selection rəngləri
+    const bgColor = theme === "dark" ? "bg-[#4C3A69]" : "bg-[#AE8FDB]";
+    const textColor = theme === "dark" ? "text-white" : "text-[#404040]";
+    const selectionText = theme === "dark" ? "selection:text-[#AE8FDB]" : "selection:text-[#AE8FDB]";
+    const selectionBg = theme === "dark" ? "selection:bg-[#643959]" : "selection:bg-white";
+
     return (
-        <div className="bg-[#AE8FDB] w-full text-[#404040] py-[50px] md:py-[70px] lg:py-[100px] flex flex-col justify-center items-center relative selection:bg-white selection:text-[#AE8FDB]">
+        <div 
+        id="project"
+        className={`${bgColor} w-full ${textColor} py-[50px] md:py-[70px] lg:py-[100px] flex flex-col justify-center items-center relative ${selectionBg} ${selectionText}`}>
             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4">Projects</h2>
             <div className="container mx-auto px-4 py-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6 relative z-10 top-0">
 

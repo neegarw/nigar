@@ -1,12 +1,11 @@
 import Header from '../components/header/Header'
-import { Outlet } from 'react-router-dom'
 import Footer from '../components/footer/Footer'
 
-function Landing() {
+function Landing({ children }) {
     return (
         <>
             <Header />
-            <Outlet />
+            {children}
             <Footer />
         </>
     )

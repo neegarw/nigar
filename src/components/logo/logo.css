@@ -5,7 +5,6 @@
 
 .path {
   fill: transparent; 
-  stroke: #6FDCBE;
   stroke-width: 2;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
@@ -26,6 +25,6 @@
     fill: transparent;
   }
   to {
-    fill: #6FDCBE;
+    fill: currentColor; /* fill rəngi path-in stroke rənginə uyğun olacaq */
   }
 }
