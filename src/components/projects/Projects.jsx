@@ -41,7 +41,7 @@ function Projects() {
     return (
         <div 
         id="project"
-        className={`${bgColor} w-full ${textColor} py-[50px] md:py-[70px] lg:py-[100px] flex flex-col justify-center items-center relative ${selectionBg} ${selectionText}`}>
+        className={`${bgColor} w-full ${textColor} py-[50px] md:py-[70px] lg:py-[100px] flex flex-col justify-center items-center relative ${selectionBg} ${selectionText} overflow-hidden`}>
             <h2 className="text-[40px] md:text-[50px] lg:text-[60px] text-center px-4">Projects</h2>
             <div className="container mx-auto px-4 py-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6 relative z-10 top-0">
 
